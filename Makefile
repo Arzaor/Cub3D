@@ -19,6 +19,7 @@ SRC 		=	main.c \
 				parsing.c \
 				init.c \
 				save_texture.c \
+				save_color.c \
 
 SRCS 		= 	$(addprefix ${SRC_DIR}, ${SRC})
 SRCS_ALL 	= 	${SRCS}

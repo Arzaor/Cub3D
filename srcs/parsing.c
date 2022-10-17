@@ -12,10 +12,11 @@
 
 #include "cub3d.h"
 
-void	parsing(char *file)
+void	parsing(t_texture *texture, t_color *color, char *file)
 {
 	check_extension(file);
-	read_file(file);
+	read_file(texture, color, file);
+	check_options_map(texture, color);
 }
 
 void	check_extension(char *file)
@@ -30,7 +31,24 @@ void	check_extension(char *file)
 	}
 }
 
-void	read_file(char *file)
+void	check_options_map(t_texture *texture, t_color *color)
+{
+	if (texture->east == NULL \
+		|| texture->north == NULL \
+		|| texture->south == NULL \
+		|| texture->west == NULL)
+	{
+		printf("Error\nDes textures sont manquantes dans la map.\n");
+		exit (0);
+	}
+	if (color->ceil == NULL || color->floor == NULL)
+	{
+		printf("Error\nDes couleurs sont manquantes dans la map.\n");
+		exit (0);
+	}
+}
+
+void	read_file(t_texture *texture, t_color *color, char *file)
 {
 	int		fd;
 	char	*line;
@@ -42,17 +60,17 @@ void	read_file(char *file)
 	while (line != NULL)
 	{
 		if (line[0] == 'N' && line[1] == 'O')
-			save_texture(line, 1);
+			save_texture(texture, line, 1);
 		else if (line[0] == 'S' && line[1] == 'O')
-			save_texture(line, 2);
+			save_texture(texture, line, 2);
 		else if (line[0] == 'W' && line[1] == 'E')
-			save_texture(line, 3);
+			save_texture(texture, line, 3);
 		else if (line[0] == 'E' && line[1] == 'A')
-			save_texture(line, 4);
-		// if (line[0] == 'F')
-		// 	save_color(line, 1);
-		// else if (line[0] == 'C')
-		// 	save_color(line, 2);
+			save_texture(texture, line, 4);
+		if (line[0] == 'F')
+			save_color(color, line, 1);
+		else if (line[0] == 'C')
+			save_color(color, line, 2);
 		free(line);
 		line = get_next_line(fd);
 	}

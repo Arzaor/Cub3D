@@ -12,11 +12,24 @@
 
 #include "cub3d.h"
 
-void	init_texture(t_texture *texture)
+t_texture	*init_texture(void)
 {
-	textures = malloc(sizeof(t_texture));
-	textures->east = NULL;
-	textures->north = NULL;
-	textures->south = NULL;
-	textures->west = NULL;
+	t_texture	*texture;
+
+	texture = malloc(sizeof(t_texture));
+	texture->east = NULL;
+	texture->north = NULL;
+	texture->south = NULL;
+	texture->west = NULL;
+	return (texture);
+}
+
+t_color	*init_color(void)
+{
+	t_color	*color;
+
+	color = malloc(sizeof(t_color));
+	color->ceil = NULL;
+	color->floor = NULL;
+	return (color);
 }

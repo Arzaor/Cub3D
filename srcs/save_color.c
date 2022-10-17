@@ -12,22 +12,18 @@
 
 #include "cub3d.h"
 
-void	save_texture(t_texture *texture, char *line, int id)
+void	save_color(t_color *color, char *line, int id)
 {
-	char		**texture_w_id;
+	char		**color_w_id;
 	int			i;
 
-	i = 2;
-	while (line[i] != '.')
+	i = 1;
+	while (!ft_isdigit(line[i]))
 		i++;
-	texture_w_id = ft_split(line, line[i - 1]);
+	color_w_id = ft_split(line, line[i - 1]);
 	if (id == 1)
-		texture->north = ft_strdup(texture_w_id[1]);
+		color->ceil = ft_strdup(color_w_id[1]);
 	else if (id == 2)
-		texture->south = ft_strdup(texture_w_id[1]);
-	else if (id == 3)
-		texture->west = ft_strdup(texture_w_id[1]);
-	else if (id == 4)
-		texture->east = ft_strdup(texture_w_id[1]);
-	free(texture_w_id);
+		color->floor = ft_strdup(color_w_id[1]);
+	free(color_w_id);
 }

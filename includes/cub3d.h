@@ -31,12 +31,17 @@ typedef struct s_color
 }				t_color;
 
 // PARSING
-void	parsing(char *file);
+void	parsing(t_texture *texture, t_color *color, char *file);
 void	check_extension(char *file);
-void	read_file(char *file);
+void	read_file(t_texture *texture, t_color *color, char *file);
+void	check_options_map(t_texture *texture, t_color *color);
 
 // SAVE_TEXTURE
-void	save_texture(char *line, int id);
+void	save_texture(t_texture *texture, char *line, int id);
+
+// SAVE_COLOR
+void	save_color(t_color *color, char *line, int id);
 
 // INIT
-void	init_texture(t_texture *textures);
+t_texture	*init_texture(void);
+t_color		*init_color(void);

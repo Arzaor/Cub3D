@@ -14,16 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	t_texture	*textures;
+	t_texture	*texture;
+	t_color		*color;
 
 	if (argc != 2)
 	{
 		printf("Error\nDeux arguments sont nécessaires.\n");
 		exit (0);
 	}
-	init_texture(textures);
-	parsing(argv[1]);
-	printf("NO %s\nSO %s\nWE %s\nEA %s\n", textures->north, textures->south, textures->west, textures->east);
+	texture = init_texture();
+	color = init_color();
+	parsing(texture, color, argv[1]);
+	printf("%s\n%s\n%s\n%s\n%s\n%s\n", texture->north, texture->south, texture->west, texture->east, color->ceil, color->floor);
 	// On lance le jeu ici
 	return (0);
 }
