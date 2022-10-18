@@ -6,7 +6,7 @@
 #    By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 13:09:02 by jbarette          #+#    #+#              #
-#    Updated: 2022/10/17 16:32:37 by jbarette         ###   ########.fr        #
+#    Updated: 2022/10/18 15:19:05 by jbarette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRC 		=	main.c \
 				init.c \
 				save_texture.c \
 				save_color.c \
+				exit.c \
+				utils.c \
 
 SRCS 		= 	$(addprefix ${SRC_DIR}, ${SRC})
 SRCS_ALL 	= 	${SRCS}

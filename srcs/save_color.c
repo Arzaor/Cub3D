@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_texture.c                                     :+:      :+:    :+:   */
+/*   save_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:32:26 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/17 16:43:49 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:30:20 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,28 @@
 
 void	save_color(t_color *color, char *line, int id)
 {
-	char		**color_w_id;
-	int			i;
+	char	*tab_color;
+	int		i;
+	int		k;
 
+	tab_color = malloc(sizeof(char) * ft_strlen(line));
 	i = 1;
-	while (!ft_isdigit(line[i]))
+	k = 0;
+	while (line[i] != '\n')
+	{
+		while ((line[i] == '\t') || (line[i] == '\v') || (line[i] == '\f') || (line[i] == '\r')
+			|| (line[i] == '\n') || (line[i] == ' '))
+			i++;
+		if (ft_format_color(line[i]))
+			tab_color[k++] = line[i];
+		else
+			ft_exit("Uniquement des chiffres dans les couleurs.");
 		i++;
-	color_w_id = ft_split(line, line[i - 1]);
+	}
+	tab_color[k] = '\0';
 	if (id == 1)
-		color->ceil = ft_strdup(color_w_id[1]);
+		color->floor = ft_strdup(tab_color);
 	else if (id == 2)
-		color->floor = ft_strdup(color_w_id[1]);
-	free(color_w_id);
+		color->ceil = ft_strdup(tab_color);
+	free(tab_color);
 }

@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:23:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/17 16:43:24 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:18:41 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ void	save_texture(t_texture *texture, char *line, int id);
 // SAVE_COLOR
 void	save_color(t_color *color, char *line, int id);
 
+// EXIT
+void	ft_exit(char *str);
+
 // INIT
 t_texture	*init_texture(void);
 t_color		*init_color(void);
+void		free_structure(t_texture *texture, t_color *color);
+void		free_array(char **array);
+
+// UTILS
+int	ft_format_color(int c);

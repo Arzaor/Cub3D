@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:31:44 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/17 16:32:43 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:53:59 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	read_file(t_texture *texture, t_color *color, char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 }

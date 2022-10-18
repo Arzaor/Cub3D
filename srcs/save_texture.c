@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:32:26 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/17 16:43:49 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:58:22 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	save_texture(t_texture *texture, char *line, int id)
 		texture->west = ft_strdup(texture_w_id[1]);
 	else if (id == 4)
 		texture->east = ft_strdup(texture_w_id[1]);
-	free(texture_w_id);
+	free_array(texture_w_id);
 }
