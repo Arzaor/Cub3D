@@ -41,6 +41,8 @@ void	save_texture(t_texture *texture, char *line, int id);
 
 // SAVE_COLOR
 void	save_color(t_color *color, char *line, int id);
+void	check_format_color(char	*color);
+char	*create_tab_color(char *line);
 
 // EXIT
 void	ft_exit(char *str);

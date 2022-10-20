@@ -25,10 +25,7 @@ void	check_extension(char *file)
 
 	size = ft_strlen(file);
 	if (!(file[size - 1] == 'b' && file[size - 2] == 'u' && file[size - 3] == 'c' && file[size - 4] == '.'))
-	{
-		printf("Error\nL'extension du fichier est incorrect.\n");
-		exit (0);
-	}
+		ft_exit("L'extension du fichier est incorrect.");
 }
 
 void	check_options_map(t_texture *texture, t_color *color)
@@ -37,15 +34,9 @@ void	check_options_map(t_texture *texture, t_color *color)
 		|| texture->north == NULL \
 		|| texture->south == NULL \
 		|| texture->west == NULL)
-	{
-		printf("Error\nDes textures sont manquantes dans la map.\n");
-		exit (0);
-	}
+		ft_exit("Des textures sont manquantes dans la map.");
 	if (color->ceil == NULL || color->floor == NULL)
-	{
-		printf("Error\nDes couleurs sont manquantes dans la map.\n");
-		exit (0);
-	}
+		ft_exit("Des couleurs sont manquantes dans la map.");
 }
 
 void	read_file(t_texture *texture, t_color *color, char *file)
@@ -55,7 +46,7 @@ void	read_file(t_texture *texture, t_color *color, char *file)
 
 	fd = open(file, O_RDONLY, 0777);
 	if (!(fd))
-		printf("Error\nEchec de la lecture du fichier.");
+		ft_exit("Echec de la lecture du fichier.");
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

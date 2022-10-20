@@ -12,7 +12,28 @@
 
 #include "cub3d.h"
 
-void	save_color(t_color *color, char *line, int id)
+void	check_format_color(char	*color)
+{
+	char	**split_virgule;
+	int		i;
+
+	split_virgule = ft_split(color, ',');
+	i = 0;
+	while (split_virgule[i])
+		i++;
+	if (i != 3)
+		ft_exit("Les couleurs doivent être au format RGB.");
+	i = 0;
+	while (split_virgule[i])
+	{
+		if (!(ft_atoi(split_virgule[i]) >= 0 && ft_atoi(split_virgule[i]) <= 255))
+			ft_exit("Les couleurs ont une range comprise entre 0 et 255.");
+		i++;
+	}
+	free_array(split_virgule);
+}
+
+char	*create_tab_color(char *line)
 {
 	char	*tab_color;
 	int		i;
@@ -33,9 +54,27 @@ void	save_color(t_color *color, char *line, int id)
 		i++;
 	}
 	tab_color[k] = '\0';
+	return (tab_color);
+}
+
+// TO-DO : Gérer les multiples virgules
+void	save_color(t_color *color, char *line, int id)
+{
+	char	*tab_color;
+
+	tab_color = ft_strtrim(create_tab_color(line), ",");
+	check_format_color(tab_color);
 	if (id == 1)
+	{
+		if (color->floor != NULL)
+			ft_exit("Interdit de dupliquer les paramètres.");
 		color->floor = ft_strdup(tab_color);
+	}
 	else if (id == 2)
+	{
+		if (color->floor != NULL)
+			ft_exit("Interdit de dupliquer les paramètres.");
 		color->ceil = ft_strdup(tab_color);
+	}
 	free(tab_color);
 }

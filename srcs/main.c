@@ -18,10 +18,7 @@ int	main(int argc, char **argv)
 	t_color		*color;
 
 	if (argc != 2)
-	{
-		printf("Error\nDeux arguments sont nécessaires.\n");
-		exit (0);
-	}
+		ft_exit("Deux arguments sont nécessaires.");
 	texture = init_texture();
 	color = init_color();
 	parsing(texture, color, argv[1]);
