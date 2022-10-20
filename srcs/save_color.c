@@ -40,15 +40,21 @@ char	*create_tab_color(char *line)
 	int		k;
 
 	tab_color = malloc(sizeof(char) * ft_strlen(line));
+	line = ft_strtrim(line, "\n");
 	i = 1;
 	k = 0;
-	while (line[i] != '\n')
+	while (line[i])
 	{
 		while ((line[i] == '\t') || (line[i] == '\v') || (line[i] == '\f') || (line[i] == '\r')
 			|| (line[i] == '\n') || (line[i] == ' '))
 			i++;
 		if (ft_format_color(line[i]))
-			tab_color[k++] = line[i];
+		{
+			if (line[i] == ',' && line[i + 1] == ',')
+				i++;
+			else
+				tab_color[k++] = line[i];
+		}
 		else
 			ft_exit("Uniquement des chiffres dans les couleurs.");
 		i++;
@@ -57,24 +63,17 @@ char	*create_tab_color(char *line)
 	return (tab_color);
 }
 
-// TO-DO : Gérer les multiples virgules
 void	save_color(t_color *color, char *line, int id)
 {
 	char	*tab_color;
 
 	tab_color = ft_strtrim(create_tab_color(line), ",");
 	check_format_color(tab_color);
-	if (id == 1)
-	{
-		if (color->floor != NULL)
-			ft_exit("Interdit de dupliquer les paramètres.");
+	if (id == 1 && color->floor == NULL)
 		color->floor = ft_strdup(tab_color);
-	}
-	else if (id == 2)
-	{
-		if (color->floor != NULL)
-			ft_exit("Interdit de dupliquer les paramètres.");
+	else if (id == 2 && color->ceil == NULL)
 		color->ceil = ft_strdup(tab_color);
-	}
+	else
+		ft_exit("Interdit de dupliquer les paramètres.");
 	free(tab_color);
 }
