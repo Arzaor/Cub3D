@@ -6,20 +6,20 @@
 /*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 05:29:11 by jeremybaret       #+#    #+#             */
-/*   Updated: 2022/10/23 06:12:03 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/23 14:00:47 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    save_position(t_map *map, int index)
+void    save_position(t_map *map)
 {
     int x;
     int y;
 
     x = 0;
     y = 0;
-    while (x < index)
+    while (x < map->nbr_lines)
     {
         while (y < ft_strlen(map->map[x]))
         {
@@ -39,14 +39,14 @@ void    save_position(t_map *map, int index)
         ft_exit("Une position est requise pour le joueur.");
 }
 
-void    find_space(t_map *map, int index)
+void    find_space(t_map *map)
 {
     int x;
     int y;
 
     x = 0;
     y = 0;
-    while (x < index)
+    while (x < map->nbr_lines)
     {
         while (y < ft_strlen(map->map[x]))
         {
@@ -59,12 +59,10 @@ void    find_space(t_map *map, int index)
     }
 }
 
-void    find_wall_first_line(t_map *map, int index)
+void    find_wall_first_line(t_map *map)
 {
-    int x;
     int y;
 
-    x = 0;
     y = 0;
     while (y < ft_strlen(map->map[0]))
     {
@@ -73,22 +71,20 @@ void    find_wall_first_line(t_map *map, int index)
         y++;
     }
     y = 0;
-    while (y < ft_strlen(map->map[index - 1]))
+    while (y < ft_strlen(map->map[map->nbr_lines - 1]))
     {
-        if (map->map[index - 1][y] != '1')
+        if (map->map[map->nbr_lines - 1][y] != '1')
             ft_exit("Uniquement des murs pour la dernière ligne de la MAP.");
         y++;
     }
 }
 
-void    find_wall(t_map *map, int index)
+void    find_wall(t_map *map)
 {
     int x;
-    int y;
 
     x = 0;
-    y = 0;
-    while (x < index)
+    while (x < map->nbr_lines)
     {
         if (map->map[x][0] != '1' || map->map[x][ft_strlen(map->map[x]) - 1] != '1')
             ft_exit("La carte doit être entourée de mur.");
@@ -96,10 +92,10 @@ void    find_wall(t_map *map, int index)
     }
 }
 
-void    parser_map(t_map *map, int index)
+void    parser_map(t_map *map)
 {
-    save_position(map, index);
-    find_space(map, index);
-    find_wall_first_line(map, index);
-    find_wall(map, index);
+    save_position(map);
+    find_space(map);
+    find_wall_first_line(map);
+    find_wall(map);
 }

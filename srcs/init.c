@@ -6,7 +6,7 @@
 /*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:29:34 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/23 03:48:16 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/23 14:02:16 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ t_map	*init_map(void)
 	map = malloc(sizeof(t_map));
 	map->map = NULL;
 	map->pos = 0;
+	map->nbr_lines = 0;
 	return (map);
 }
 
-void	free_structure(t_texture *texture, t_color *color, t_map *map)
+void	free_structure(t_texture *texture, t_color *color)
 {
 	free(texture->east);
 	free(texture->north);

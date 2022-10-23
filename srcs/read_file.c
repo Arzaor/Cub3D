@@ -6,7 +6,7 @@
 /*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 02:59:56 by jeremybaret       #+#    #+#             */
-/*   Updated: 2022/10/23 05:51:20 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/23 14:01:06 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ int		count_lines(char *file)
 	return(count);
 }
 
-int	read_file(t_texture *texture, t_color *color, t_map *map, char *file)
+void	read_file(t_texture *texture, t_color *color, t_map *map, char *file)
 {
 	int		fd;
 	char	*line;
-	int		k;
 
 	fd = open(file, O_RDONLY, 0777);
-	k = 0;
 	map->map = malloc(sizeof(char *) * count_lines(file));
 	line = get_next_line(fd);
 	if (!(fd))
@@ -63,12 +61,11 @@ int	read_file(t_texture *texture, t_color *color, t_map *map, char *file)
 		else
 		{
 			if (ft_strlen(line) > 1)
-				map->map[k++] = ft_strdup(ft_strtrim(line, "\n"));
+				map->map[map->nbr_lines++] = ft_strdup(ft_strtrim(line, "\n"));
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
-	return (k);
 }

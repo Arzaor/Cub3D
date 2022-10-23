@@ -6,7 +6,7 @@
 /*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:12:49 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/23 05:53:35 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/23 14:03:12 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	parsing(texture, color, map, argv[1]);
 	// printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n", texture->north, texture->south, texture->west, texture->east, color->ceil, color->floor, map->map[0]);
 	// On lance le jeu ici
-	free_structure(texture, color, map);
+	free_structure(texture, color);
 	// while (1) ;
 	return (0);
 }

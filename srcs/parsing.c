@@ -6,7 +6,7 @@
 /*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:31:44 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/23 05:52:15 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/23 14:01:53 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	parsing(t_texture *texture, t_color *color, t_map *map, char *file)
 {
-	int index;
-
-	index = 0;
 	check_extension(file);
-	index = read_file(texture, color, map, file);
+	read_file(texture, color, map, file);
 	isempty_options(texture, color);
-	parser_map(map, index);
+	parser_map(map);
 }
 
 void	check_extension(char *file)

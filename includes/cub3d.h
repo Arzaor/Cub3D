@@ -6,14 +6,14 @@
 /*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:23:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/23 05:52:28 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/23 14:03:41 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <stdio.h>
-#include <mlx.h>
 #include <sys/stat.h>
+#include <mlx.h>
 #include <fcntl.h>
 
 typedef struct s_texture
@@ -34,12 +34,13 @@ typedef struct t_map
 {
 	char		**map;
 	char		pos;
+	int			nbr_lines;
 }				t_map;
 
 // PARSING
 void	parsing(t_texture *texture, t_color *color, t_map *map, char *file);
 void	check_extension(char *file);
-int		read_file(t_texture *texture, t_color *color, t_map *map, char *file);
+void	read_file(t_texture *texture, t_color *color, t_map *map, char *file);
 void	isempty_options(t_texture *texture, t_color *color);
 
 // READ_FILE
@@ -54,8 +55,8 @@ void	check_format_color(char	*color);
 char	*create_tab_color(char *line);
 
 // PARSER_MAP
-void    parser_map(t_map *map, int index);
-void    save_position(t_map *map, int index);
+void    parser_map(t_map *map);
+void    save_position(t_map *map);
 
 // EXIT
 void	ft_exit(char *str);
@@ -64,7 +65,7 @@ void	ft_exit(char *str);
 t_texture	*init_texture(void);
 t_color		*init_color(void);
 t_map		*init_map(void);
-void		free_structure(t_texture *texture, t_color *color, t_map *map);
+void		free_structure(t_texture *texture, t_color *color);
 void		free_array(char **array);
 
 // UTILS
