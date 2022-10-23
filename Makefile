@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 13:09:02 by jbarette          #+#    #+#              #
-#    Updated: 2022/10/18 15:19:05 by jbarette         ###   ########.fr        #
+#    Updated: 2022/10/23 06:16:21 by jeremybaret      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC 		=	main.c \
 				save_color.c \
 				exit.c \
 				utils.c \
+				read_file.c \
+				parser_map.c \
 
 SRCS 		= 	$(addprefix ${SRC_DIR}, ${SRC})
 SRCS_ALL 	= 	${SRCS}

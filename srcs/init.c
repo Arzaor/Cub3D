@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:29:34 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/18 14:58:25 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/23 03:48:16 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,17 @@ t_color	*init_color(void)
 	return (color);
 }
 
-void	free_structure(t_texture *texture, t_color *color)
+t_map	*init_map(void)
+{
+	t_map	*map;
+
+	map = malloc(sizeof(t_map));
+	map->map = NULL;
+	map->pos = 0;
+	return (map);
+}
+
+void	free_structure(t_texture *texture, t_color *color, t_map *map)
 {
 	free(texture->east);
 	free(texture->north);
@@ -42,8 +52,10 @@ void	free_structure(t_texture *texture, t_color *color)
 	free(texture->west);
 	free(color->ceil);
 	free(color->floor);
+	// free_array(map->map);
 	free(texture);
 	free(color);
+	// free(map);
 }
 
 void	free_array(char **array)
