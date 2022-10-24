@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 02:59:56 by jeremybaret       #+#    #+#             */
-/*   Updated: 2022/10/23 14:01:06 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/24 14:03:33 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,34 @@ int		count_lines(char *file)
 	return(count);
 }
 
-void	read_file(t_texture *texture, t_color *color, t_map *map, char *file)
+void	read_file(t_params *params, char *file)
 {
 	int		fd;
 	char	*line;
 
 	fd = open(file, O_RDONLY, 0777);
-	map->map = malloc(sizeof(char *) * count_lines(file));
+	params->map = malloc(sizeof(char *) * count_lines(file));
 	line = get_next_line(fd);
 	if (!(fd))
 		ft_exit("Echec de la lecture du fichier.");
 	while (line != NULL)
 	{
 		if (line[0] == 'N' && line[1] == 'O')
-			save_texture(texture, line, 1);
+			save_texture(params, line, 1);
 		else if (line[0] == 'S' && line[1] == 'O')
-			save_texture(texture, line, 2);
+			save_texture(params, line, 2);
 		else if (line[0] == 'W' && line[1] == 'E')
-			save_texture(texture, line, 3);
+			save_texture(params, line, 3);
 		else if (line[0] == 'E' && line[1] == 'A')
-			save_texture(texture, line, 4);
+			save_texture(params, line, 4);
 		else if (line[0] == 'F')
-			save_color(color, line, 1);
+			save_color(params, line, 1);
 		else if (line[0] == 'C')
-			save_color(color, line, 2);
+			save_color(params, line, 2);
 		else
 		{
 			if (ft_strlen(line) > 1)
-				map->map[map->nbr_lines++] = ft_strdup(ft_strtrim(line, "\n"));
+				params->map[params->nbr_lines++] = ft_strdup(ft_strtrim(line, "\n"));
 		}
 		free(line);
 		line = get_next_line(fd);

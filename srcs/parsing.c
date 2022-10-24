@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:31:44 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/23 14:01:53 by jeremybaret      ###   ########.fr       */
+/*   Updated: 2022/10/24 13:59:45 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	parsing(t_texture *texture, t_color *color, t_map *map, char *file)
+void	parsing(t_params *params, char *file)
 {
 	check_extension(file);
-	read_file(texture, color, map, file);
-	isempty_options(texture, color);
-	parser_map(map);
+	read_file(params, file);
+	isempty_options(params);
+	parser_map(params);
 }
 
 void	check_extension(char *file)
@@ -29,13 +29,13 @@ void	check_extension(char *file)
 		ft_exit("L'extension du fichier est incorrect.");
 }
 
-void	isempty_options(t_texture *texture, t_color *color)
+void	isempty_options(t_params *params)
 {
-	if (texture->east == NULL \
-		|| texture->north == NULL \
-		|| texture->south == NULL \
-		|| texture->west == NULL)
+	if (params->east == NULL \
+		|| params->north == NULL \
+		|| params->south == NULL \
+		|| params->west == NULL)
 		ft_exit("Des textures sont manquantes dans la map.");
-	if (color->ceil == NULL || color->floor == NULL)
+	if (params->ceil == NULL || params->floor == NULL)
 		ft_exit("Des couleurs sont manquantes dans la map.");
 }

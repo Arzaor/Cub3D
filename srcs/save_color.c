@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:32:26 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/18 15:30:20 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:03:46 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ char	*create_tab_color(char *line)
 	return (tab_color);
 }
 
-void	save_color(t_color *color, char *line, int id)
+void	save_color(t_params *params, char *line, int id)
 {
 	char	*tab_color;
 
 	tab_color = ft_strtrim(create_tab_color(line), ",");
 	check_format_color(tab_color);
-	if (id == 1 && color->floor == NULL)
-		color->floor = ft_strdup(tab_color);
-	else if (id == 2 && color->ceil == NULL)
-		color->ceil = ft_strdup(tab_color);
+	if (id == 1 && params->floor == NULL)
+		params->floor = ft_strdup(tab_color);
+	else if (id == 2 && params->ceil == NULL)
+		params->ceil = ft_strdup(tab_color);
 	else
 		ft_exit("Interdit de dupliquer les paramètres.");
 	free(tab_color);
