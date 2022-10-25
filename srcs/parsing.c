@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:31:44 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/24 13:59:45 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:11:52 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	check_extension(char *file)
 	size = ft_strlen(file);
 	if (!(file[size - 1] == 'b' && file[size - 2] == 'u' && file[size - 3] == 'c' && file[size - 4] == '.'))
 		ft_exit("L'extension du fichier est incorrect.");
+	if (open(file, O_RDONLY) == -1)
+		ft_exit("La carte est introuvable.");
 }
 
 void	isempty_options(t_params *params)

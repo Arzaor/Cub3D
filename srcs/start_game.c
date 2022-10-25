@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:05:25 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/24 14:20:51 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:51:21 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	start_game(t_params *params)
 	(void)params;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello World!");
+	mlx_win = mlx_new_window(mlx, 640, 480, "Hello World!");
 	mlx_loop(mlx);
 	return (0);
 }
