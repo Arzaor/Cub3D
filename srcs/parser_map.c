@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 05:29:11 by jeremybaret       #+#    #+#             */
-/*   Updated: 2022/10/24 14:03:57 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:55:39 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    save_position(t_params *params)
     {
         while (y < ft_strlen(params->map[x]))
         {
-            if (params->map[x][y] == 'S' || params->map[x][y] == 'N' || params->map[x][y] == 'W' || params->map[x][y] == 'S' || params->map[x][y] == 'E')
+            if (params->map[x][y] == 'S' || params->map[x][y] == 'N' || params->map[x][y] == 'W' || params->map[x][y] == 'E')
             {
                 if (!params->pos)
                     params->pos = params->map[x][y];
