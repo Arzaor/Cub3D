@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 05:29:11 by jeremybaret       #+#    #+#             */
-/*   Updated: 2022/10/25 15:23:08 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:10:10 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void    save_position(t_params *params)
 				|| params->map[x][y] == 'W' || params->map[x][y] == 'E')
             {
                 if (!params->pos)
+				{
                     params->pos = params->map[x][y];
+					params->pos_x = x;
+					params->pos_y = y;
+				}
                 else
                     ft_exit("Une seule position doit être indiqué pour le joueur.");
             }
@@ -116,9 +120,9 @@ void    find_wall(t_params *params)
 
 void    parser_map(t_params *params)
 {
-	find_letter(params);
     save_position(params);
     find_space(params);
+	find_letter(params);
     find_wall_first_line(params);
     find_wall(params);
 }

@@ -6,7 +6,7 @@
 #    By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 13:09:02 by jbarette          #+#    #+#              #
-#    Updated: 2022/10/24 14:20:44 by jbarette         ###   ########.fr        #
+#    Updated: 2022/10/28 16:05:54 by jbarette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC 		=	main.c \
 				read_file.c \
 				parser_map.c \
 				start_game.c \
+				close.c \
 
 SRCS 		= 	$(addprefix ${SRC_DIR}, ${SRC})
 SRCS_ALL 	= 	${SRCS}

@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:29:34 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/24 14:04:20 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:10:03 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_params	*init_params(void)
 	params->floor = NULL;
 	params->map = NULL;
 	params->pos = 0;
+	params->pos_x = 0;
+	params->pos_y = 0;
 	params->nbr_lines = 0;
 	return (params);
 }

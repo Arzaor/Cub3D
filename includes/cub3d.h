@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:23:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/24 14:20:33 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:09:04 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 #include <sys/stat.h>
 #include <mlx.h>
 #include <fcntl.h>
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 typedef	struct s_params
 {
@@ -26,9 +35,13 @@ typedef	struct s_params
 	char		*ceil;
 	char		**map;
 	char		pos;
+	int			pos_x;
+	int			pos_y;
 	int			nbr_lines;
+	void		*mlx;
+	void		*mlx_win;
+	t_data		img;
 }				t_params;
-
 
 // PARSING
 void	parsing(t_params *params, char *file);
@@ -61,6 +74,9 @@ void	ft_exit(char *str);
 t_params	*init_params(void);
 void		free_structure(t_params *params);
 void		free_array(char **array);
+
+// CLOSE
+int	close_win();
 
 // UTILS
 int	ft_format_color(int c);
