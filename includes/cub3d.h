@@ -6,15 +6,23 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:23:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/28 16:09:04 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:55:09 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <stdio.h>
-#include <sys/stat.h>
-#include <mlx.h>
-#include <fcntl.h>
+#ifndef CUB3D_H
+# define CUB3D_H
+
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <sys/stat.h>
+# include <mlx.h>
+# include <fcntl.h>
+# include <math.h>
+# include <time.h>
+
+# define WidthScreen 512
+# define HeightScreen 384
 
 typedef struct s_data
 {
@@ -75,8 +83,13 @@ t_params	*init_params(void);
 void		free_structure(t_params *params);
 void		free_array(char **array);
 
+// KEY
+int	event_press(int keycode, t_params *params);
+
 // CLOSE
 int	close_win();
 
 // UTILS
 int	ft_format_color(int c);
+
+#endif

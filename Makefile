@@ -6,7 +6,7 @@
 #    By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 13:09:02 by jbarette          #+#    #+#              #
-#    Updated: 2022/10/28 16:05:54 by jbarette         ###   ########.fr        #
+#    Updated: 2022/11/10 15:36:41 by jbarette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC 		=	main.c \
 				parser_map.c \
 				start_game.c \
 				close.c \
+				key.c \
 
 SRCS 		= 	$(addprefix ${SRC_DIR}, ${SRC})
 SRCS_ALL 	= 	${SRCS}
@@ -33,7 +34,7 @@ SRCS_ALL 	= 	${SRCS}
 OBJS 		= 	$(SRCS:.c=.o)
 
 CC			= 	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	#-Wall -Wextra -Werror
 
 LIB_RDL 	= 	./libft/libft.a
 
