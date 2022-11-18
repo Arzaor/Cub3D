@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:23:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/11/10 15:55:09 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:10:57 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <math.h>
 # include <time.h>
 
-# define WidthScreen 512
-# define HeightScreen 384
+# define WidthScreen 1920
+# define HeightScreen 1080
 
 typedef struct s_data
 {
@@ -46,6 +46,11 @@ typedef	struct s_params
 	int			pos_x;
 	int			pos_y;
 	int			nbr_lines;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double		moveSpeed;
 	void		*mlx;
 	void		*mlx_win;
 	t_data		img;

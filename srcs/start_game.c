@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:05:25 by jbarette          #+#    #+#             */
-/*   Updated: 2022/11/10 17:12:32 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:15:20 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ void verLine(int x, int drawStart, int drawEnd, t_params *params)
 {
 	while (drawStart < drawEnd)
 	{
-		my_mlx_pixel_put(&params->img, x, drawStart, 0x00FFFF);
+		if (drawStart % 2)
+			my_mlx_pixel_put(&params->img, x, drawStart, 0x00FFFF);
+		else
+			my_mlx_pixel_put(&params->img, x, drawStart, 0xFFFFFF);
 		drawStart++;
 	}
 }
 
 int	draw(t_params *params)
 {
-	double posX = params->pos_x, posY = params->pos_y;  //x and y start position
-	double dirX = -1, dirY = 0; //initial direction vector
-	double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
-
 	clock_t start = 0;
 	clock_t end;
 	double time = 0; //time of current frame
@@ -51,10 +50,10 @@ int	draw(t_params *params)
 	while (x < WidthScreen)
 	{
 		double cameraX = 2 * x / (double)WidthScreen - 1; //x-coordinate in camera space
-		double rayPosX = posX;
-		double rayPosY = posY;
-		double rayDirX = dirX + planeX * cameraX;
-		double rayDirY = dirY + planeY * cameraX;
+		double rayPosX = params->pos_x;
+		double rayPosY = params->pos_y;
+		double rayDirX = params->dirX + params->planeX * cameraX;
+		double rayDirY = params->dirY + params->planeY * cameraX;
 		int mapX = (int)rayPosX;
 		int mapY = (int)rayPosY;
 		double sideDistX;
@@ -122,26 +121,20 @@ int	draw(t_params *params)
 	}
 	end = start;
 	start = clock();
-	double frameTime = (start - end) / CLOCKS_PER_SEC; 
-	double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
-	double rotSpeed = frameTime * 3.0;
+	params->moveSpeed = ((start - end) / CLOCKS_PER_SEC) * 5.0;
+	double rotSpeed = ((start - end) / CLOCKS_PER_SEC) * 3.0;
 	mlx_put_image_to_window(params->mlx, params->mlx_win, params->img.img, 0, 0);
 	return (0);
-}
-
-void	write_to_image(t_params *params)
-{
-	create_image(params);
-	mlx_loop_hook(params->mlx, &draw, params);
-	mlx_hook(params->mlx_win, 2, 0, &event_press, params);
-	mlx_hook(params->mlx_win, 17, 0, &close_win, NULL);
-	mlx_loop(params->mlx);
 }
 
 int	start_game(t_params *params)
 {
 	params->mlx = mlx_init();
 	params->mlx_win = mlx_new_window(params->mlx, WidthScreen, HeightScreen, "Hello World!");
-	write_to_image(params);
+	create_image(params);
+	mlx_loop_hook(params->mlx, &draw, params);
+	mlx_hook(params->mlx_win, 2, 0, &event_press, params);
+	mlx_hook(params->mlx_win, 17, 0, &close_win, NULL);
+	mlx_loop(params->mlx);
 	return (0);
 }
