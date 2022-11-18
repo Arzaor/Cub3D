@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hterras <hterras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:23:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/11/16 16:10:57 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:46:07 by hterras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef	struct s_params
 	double		planeX;
 	double		planeY;
 	double		moveSpeed;
+	double		rotSpeed;
 	void		*mlx;
 	void		*mlx_win;
 	t_data		img;

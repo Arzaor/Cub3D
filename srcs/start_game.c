@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hterras <hterras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:05:25 by jbarette          #+#    #+#             */
-/*   Updated: 2022/11/16 16:15:20 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:13:22 by hterras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void verLine(int x, int drawStart, int drawEnd, t_params *params)
 {
 	while (drawStart < drawEnd)
 	{
-		if (drawStart % 2)
-			my_mlx_pixel_put(&params->img, x, drawStart, 0x00FFFF);
-		else
+		
 			my_mlx_pixel_put(&params->img, x, drawStart, 0xFFFFFF);
 		drawStart++;
 	}
@@ -106,9 +104,9 @@ int	draw(t_params *params)
 		}
 
 		if (side == 0)
-			perpWallDist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+			perpWallDist = (sideDistX - deltaDistX);
 		else
-			perpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
+			perpWallDist =  (sideDistY - deltaDistY);
 		int lineHeight = (int)(HeightScreen / perpWallDist);
 		int drawStart = -lineHeight / 2 + HeightScreen / 2;
 		if (drawStart < 0)
@@ -121,9 +119,15 @@ int	draw(t_params *params)
 	}
 	end = start;
 	start = clock();
-	params->moveSpeed = ((start - end) / CLOCKS_PER_SEC) * 5.0;
-	double rotSpeed = ((start - end) / CLOCKS_PER_SEC) * 3.0;
+	/*oldTime = time;
+	time = getTicks();
+	double frameTime = (time - oldTime) / 1000.0;
+	print(1.0 / frameTime);
+	redraw();
+	cls();*/
 	mlx_put_image_to_window(params->mlx, params->mlx_win, params->img.img, 0, 0);
+	params->moveSpeed = ((start - end) / CLOCKS_PER_SEC) * 5.0;
+	params->rotSpeed = ((start - end) / CLOCKS_PER_SEC) * 3.0;
 	return (0);
 }
 
