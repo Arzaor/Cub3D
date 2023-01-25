@@ -18,6 +18,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+# include "../mlx/mlx.h"
 # include <time.h>
 
 # define WidthScreen 1920
