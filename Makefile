@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 13:09:02 by jbarette          #+#    #+#              #
-#    Updated: 2022/11/10 15:36:41 by jbarette         ###   ########.fr        #
+#    Updated: 2022/12/28 12:03:00 by jeremybaret      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,6 @@ SRC 		=	main.c \
 				utils.c \
 				read_file.c \
 				parser_map.c \
-				start_game.c \
-				close.c \
-				key.c \
 
 SRCS 		= 	$(addprefix ${SRC_DIR}, ${SRC})
 SRCS_ALL 	= 	${SRCS}
@@ -39,25 +36,21 @@ CFLAGS		=	#-Wall -Wextra -Werror
 LIB_RDL 	= 	./libft/libft.a
 
 %.o: %.c
-		${CC} $(CFLAGS) -I $(INC_DIR) -Imlx -c $< -o $@
+		${CC} $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
 		make -C ./libft
-		make -C ./mlx
-		mv ./mlx/libmlx.dylib ../cub3d
-		${CC} $(OBJS) ${LIB_RDL} -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		${CC} $(OBJS) ${LIB_RDL} -o $(NAME)
 
 all:
 		$(MAKE) -j $(NAME)
 
 clean:
 		make -C ./libft clean
-		make -C ./mlx clean
 		rm -rf $(OBJS)
 
 fclean:	clean
 		make -C ./libft fclean
-		rm -f libmlx.dylib
 		rm -rf $(NAME)
 
 re: fclean all

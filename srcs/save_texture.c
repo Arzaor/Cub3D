@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeremybarette <jeremybarette@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:32:26 by jbarette          #+#    #+#             */
-/*   Updated: 2022/10/24 14:02:52 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/12/28 22:23:20 by jeremybaret      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	save_texture(t_params *params, char *line, int id)
 {
 	char		*texture_w_id;
 	
-	texture_w_id = cpy_texture(line);
+	texture_w_id = ft_strtrim(cpy_texture(line), " ");
 	if (open(texture_w_id, O_RDONLY) == -1)
 		ft_exit("Une ou des textures sont introuvables.");
 	if (id == 1 && params->north == NULL)
